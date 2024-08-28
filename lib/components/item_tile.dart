@@ -3,19 +3,21 @@ import '../models/item.dart';
 
 class ItemTile extends StatelessWidget {
   Item item;
-  ItemTile({super.key, required this.item});
+  void Function()? onTap;
+  ItemTile({super.key, required this.item, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(left:25),
-      width: 280,
+      width: 300,
       decoration: BoxDecoration(
         color: Colors.grey[100],
         borderRadius: BorderRadius.circular(12)
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisSize: MainAxisSize.min,
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
@@ -41,7 +43,7 @@ class ItemTile extends StatelessWidget {
                       item.name,
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 20
+                        fontSize: 18
                       )
                       
             
@@ -56,16 +58,19 @@ class ItemTile extends StatelessWidget {
                     )
                   ],
                 ),
-                Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: const BoxDecoration(
-                    color: Colors.black, 
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(12),
-                      bottomRight: Radius.circular(12)
-                    )),
-                    
-                  child: const Icon(Icons.add, color: Colors.white,),
+                GestureDetector(
+                  onTap: onTap,
+                  child: Container(
+                    padding: const EdgeInsets.all(20),
+                    decoration: const BoxDecoration(
+                      color: Colors.black, 
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(12),
+                        bottomRight: Radius.circular(12)
+                      )),
+                      
+                    child: const Icon(Icons.add, color: Colors.white,),
+                  ),
                 )
               ],
             ),

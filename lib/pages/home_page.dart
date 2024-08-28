@@ -35,6 +35,7 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: MyBottomNavBar(
         onTabChange: (index) => navigateBottomBar(index),
       ),
+      //opens sidebar
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -47,6 +48,7 @@ class _HomePageState extends State<HomePage> {
           }
         ),
       ),
+      //sidebar with logo and buttons
       drawer: Drawer(
         backgroundColor: const Color.fromRGBO(33, 33, 33, 1),
         child: Column(
@@ -63,7 +65,8 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   const SizedBox(height: 20),
-                    
+                  
+                  //sidebar buttons
                   const Padding(
                     padding: EdgeInsets.only(left: 25.0),
                     child: ListTile(
