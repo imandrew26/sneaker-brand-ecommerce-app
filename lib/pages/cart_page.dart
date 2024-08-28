@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:new_ecommerce_app/pages/intro_page.dart';
 import 'package:provider/provider.dart';
 import '../components/cart_item.dart';
 import '../models/cart.dart';
@@ -35,6 +36,40 @@ class CartPage extends StatelessWidget {
                 return CartItem(item: tempItem);
               }),
             ),
+
+            //checkout button
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20.0),
+              child: GestureDetector(
+                onTap: () => Navigator.push(
+                  context, 
+                  MaterialPageRoute(
+                    builder: (context) => IntroPage(),
+                  ),
+                ),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.grey[900],
+                    borderRadius: BorderRadius.circular(10)
+                          
+                  ),
+                  padding: const EdgeInsets.all(20),
+                  child: const Center(
+                    child: Text(
+                      "Checkout",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            )
+
+
+
           ],
         ),
       ),

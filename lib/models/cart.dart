@@ -8,22 +8,68 @@ class Cart extends ChangeNotifier{
 
   List<Item> itemShop = [
     Item(
-      name: 'Air Jordan 4 Pine',
+      name: 'Air Jordan 4 Retro',
       price: "240",
       imagePath: 'lib/images/jordan-4-green.png',
-      description: 'Mens\'s Basketball Shoe'
+      description: 'This AJ4 throws it back with full-grain and synthetic leathers and premium textiles.',
+      bestseller: true,
+      newarrival: false,
     ),
     Item(
-      name: 'Air Max 97 Triple White',
-      price: "170",
-      imagePath: 'lib/images/air-max-97-mens-shoes-LJmK45.png',
-      description: 'description'
-    ),
-    Item(
-      name: 'Pegasus 41 Blue Stripe',
+      name: 'Zion 3 "Fresh Paint"',
       price: "140",
-      imagePath: 'lib/images/pegasus-41-mens-road-running-shoes-7S90QB.png',
-      description: 'description'
+      imagePath: 'lib/images/zion-3-paint.png',
+      description: 'This clean and essential special edition channels a Jordan icon with a Zion twist.',
+      bestseller: true,
+      newarrival: false,
+    ),
+    Item(
+      name: 'Air Jordan 1 Retro High',
+      price: "180",
+      imagePath: 'lib/images/jordan-1-fif.png',
+      description: 'This iteration of the AJ1 reimagines Mike\'s signature model with a fresh mix of colors.',
+      bestseller: true,
+      newarrival: false,
+    ),
+    Item(
+      name: 'Luka 3 "Speedway"',
+      price: "130",
+      imagePath: 'lib/images/luka-3-black.png',
+      description: 'Black and white are all your opponents will see as you sink quick buckets past them.',
+      bestseller: true,
+      newarrival: false,
+    ),
+    Item(
+      name: 'Air Jordan 3 Retro',
+      price: "200",
+      imagePath: 'lib/images/jordan-3-grey.png',
+      description: 'With luxurious elephant print, the AJ3 returns with its classic style and grace.',
+      bestseller: true,
+      newarrival: false,
+    ),
+    Item(
+      name: 'Luke 3 "Blurred Vision"',
+      price: "130",
+      imagePath: 'lib/images/luka-3-bv.png',
+      description: 'Armed with plenty of court-ready tech, colors blend together and Luka scores.',
+      bestseller: false,
+      newarrival: true,
+    ),
+    Item(
+      name: 'Zion 3 M.U.D. "Light Bone"',
+      price: "150",
+      imagePath: 'lib/images/zion-3-bone.png',
+      description: 'The special-edition strap and nubuck leather lets you customize your game.',
+      bestseller: false,
+      newarrival: true,
+    ),
+    Item(
+      name: 'Tatum 1 "Arena Fits"',
+      price: "170",
+      imagePath: 'lib/images/tatum-1-af.png',
+      description: 'Play your best in a performance shoe inspired by JT\'s legendary off-court style.',
+      bestseller: false,
+      newarrival: true,
     ),
   ];
 

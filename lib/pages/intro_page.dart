@@ -18,11 +18,11 @@ class IntroPage extends StatelessWidget {
                   //logo
                   Padding(
                     padding: const EdgeInsets.all(25.0),
-                    child: Image.asset('lib/images/nike-logo.png', height: 240),
+                    child: Image.asset('lib/images/nike-logo-slogan.png', height: 130),
                   ),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 100),
 
-                  //slogan
+                  /*
                   const Text(
                     "Just Do It",
                     style: TextStyle(
@@ -30,7 +30,7 @@ class IntroPage extends StatelessWidget {
                       fontSize: 20
                     ),
                   ),
-                const SizedBox(height: 30),
+                  */
           
                 //launch home
                 GestureDetector(

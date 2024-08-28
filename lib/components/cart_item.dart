@@ -27,7 +27,17 @@ class _CartItemState extends State<CartItem> {
       ),
       margin: const EdgeInsets.only(bottom: 10),
       child: ListTile(
-        leading: Image.asset(widget.item.imagePath),
+
+        //item image
+        leading: ClipRRect(
+          borderRadius: BorderRadius.circular(6),
+          child: Image.asset(
+            widget.item.imagePath,
+            fit: BoxFit.cover,
+          ),
+        ),
+
+        //item image path
         title: Text(widget.item.name),
         subtitle: Text('\$${widget.item.price}'),
         trailing: IconButton(onPressed: removeCartItemCart, icon: const Icon(Icons.delete)),

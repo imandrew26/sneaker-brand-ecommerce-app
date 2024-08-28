@@ -37,8 +37,9 @@ class _HomePageState extends State<HomePage> {
       ),
       //opens sidebar
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
+        scrolledUnderElevation: 0.0,
+        backgroundColor: Colors.grey[300],
+        //surfaceTintColor: Colors.grey[900],
         leading: Builder(
           builder: (context) {
             return IconButton(onPressed: (){
@@ -50,7 +51,7 @@ class _HomePageState extends State<HomePage> {
       ),
       //sidebar with logo and buttons
       drawer: Drawer(
-        backgroundColor: const Color.fromRGBO(33, 33, 33, 1),
+        backgroundColor: Colors.grey[900],
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -94,7 +95,7 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
             const Padding(
-              padding: EdgeInsets.only(left: 25.0),
+              padding: EdgeInsets.only(left: 25.0, bottom: 15.0),
               child: ListTile(
                 leading: Icon(Icons.logout, color: Colors.white,),
                 title: Text("Logout",

@@ -17,16 +17,20 @@ class ItemTile extends StatelessWidget {
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        mainAxisSize: MainAxisSize.min,
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
             child: Image.asset(item.imagePath),
           ),
-          Text(
-            item.description,
-            style: TextStyle(
-              color: Colors.grey[500]
+
+          //description
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Text(
+              item.description,
+              style: TextStyle(
+                color: Colors.grey[500]
+              ),
             ),
           ),
           Padding(
