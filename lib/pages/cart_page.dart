@@ -1,12 +1,68 @@
 import 'package:flutter/material.dart';
-import 'package:new_ecommerce_app/pages/intro_page.dart';
+import 'package:new_ecommerce_app/pages/home_page.dart';
+import 'package:new_ecommerce_app/payment/create_payment.dart';
 import 'package:provider/provider.dart';
 import '../components/cart_item.dart';
 import '../models/cart.dart';
 import '../models/item.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:flutter/foundation.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({super.key});
+  
+  //handles successful payment
+  void displayPaymentSheet(BuildContext context) async {
+    try {
+      await Stripe.instance.presentPaymentSheet();
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content:Text("Payment successful!"), 
+          padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5.0)
+        ),
+      );
+      
+      //after successful transaction...
+      //navigate back to home/shop page
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const HomePage(),
+        )
+      );
+
+      //reset and remove items in user cart
+      Provider.of<Cart>(context, listen: false).resetCart();
+
+
+    } catch (e) {
+      print('Payment process was canceled or failed: $e');
+    }
+  }
+
+  //initializes payment sheet, payment amount
+  Future<void> makePayment(BuildContext context) async {
+    try {
+      final paymentIntentData = await createPaymentIntent(
+        Provider.of<Cart>(context, listen: false).getTotalPrice(), 
+        'USD') ?? {};
+
+      await Stripe.instance.initPaymentSheet(
+        paymentSheetParameters: SetupPaymentSheetParameters(
+          paymentIntentClientSecret: paymentIntentData['client_secret'],
+          style: ThemeMode.light,
+          customFlow: false,
+          merchantDisplayName: 'Nike',
+        ),
+      ).then((value) {
+        displayPaymentSheet(context);
+      });
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,12 +97,7 @@ class CartPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20.0),
               child: GestureDetector(
-                onTap: () => Navigator.push(
-                  context, 
-                  MaterialPageRoute(
-                    builder: (context) => IntroPage(),
-                  ),
-                ),
+                onTap: () => makePayment(context),
                 child: Container(
                   decoration: BoxDecoration(
                     color: Colors.grey[900],

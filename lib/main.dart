@@ -8,6 +8,7 @@ import 'pages/intro_page.dart';
 void main () async {
   await dotenv.load(fileName: ".env");
   Stripe.publishableKey = dotenv.env['STRIPE_PUBLISHABLE_KEY'] ?? '';
+  await Stripe.instance.applySettings();
   runApp(const MyApp());
 }
 

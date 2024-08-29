@@ -56,7 +56,7 @@ class Cart extends ChangeNotifier{
       newarrival: true,
     ),
     Item(
-      name: 'Zion 3 M.U.D. "Light Bone"',
+      name: 'Zion 3 M.U.D. "Bone"',
       price: "150",
       imagePath: 'lib/images/zion-3-bone.png',
       description: 'The special-edition strap and nubuck leather lets you customize your game.',
@@ -96,6 +96,21 @@ class Cart extends ChangeNotifier{
   void removeCartItem(Item item){
     userCart.remove(item);
     notifyListeners();
+  }
+
+  //resets cart
+  void resetCart(){
+    userCart = [];
+  }
+
+  //return total price as string (in cents)
+  String getTotalPrice(){
+    int sum = 0;
+    for (Item item in userCart) {
+      sum += int.parse(item.price); // Convert string to int
+    }
+    sum *= 100;
+    return sum.toString();
   }
 
 }
