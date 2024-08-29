@@ -1,16 +1,27 @@
-# flutter_app_ecom
 
-A new Flutter project.
+# Nike Storefront App
 
-## Getting Started
+E-commerce application built primarily using Flutter designed to mimic the theme of the Nike app. It features a fully functional cart and checkout system, state management using `provider`, and Stripe integration via Express.js for payment processing.
 
-This project is a starting point for a Flutter application.
+## Demo
 
-A few resources to get you started if this is your first Flutter project:
+Here's a quick video demo showcasing the app's features:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+![shop-page](https://github.com/user-attachments/assets/2f96d7cc-9435-4ed5-ac33-ba0c3e22656d)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+## Features
+
+- **User Interface:**
+  - Scrolling carousels for product listings.
+  - Shopping cart system to add and remove products.
+  - Checkout system with Stripe payment integration.
+
+- **Backend:**
+  - Express.js handles payment processing with Stripe integration.
+
+## Required Installations
+
+- Flutter SDK
+- Node.js and npm
+- Stripe developer account
