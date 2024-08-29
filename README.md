@@ -8,7 +8,10 @@ E-commerce application built primarily using Flutter designed to mimic the theme
 Here's a video demo showcasing the app's features:
 
 
-<video src="https://github.com/user-attachments/assets/729043a6-ae8e-4511-adfb-72e00187f764" width="300" />
+<div style="width:300px; margin: auto;">
+  <video src="https://github.com/user-attachments/assets/729043a6-ae8e-4511-adfb-72e00187f764" width="100%" controls />
+</div>
+
 
 ## Features
 
