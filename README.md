@@ -12,6 +12,15 @@ Here's a video demo showcasing the app's features:
   <video src="https://github.com/user-attachments/assets/729043a6-ae8e-4511-adfb-72e00187f764" width="100%" controls />
 </div>
 
+##Update Notes
+
+**Update 1.1 (October 7, 2024)**
+
+Added discount code support with backend validation and price recalculation, updating cart UI.
+
+<div style="width:300px; margin: auto;">
+  <video src="https://github.com/user-attachments/assets/6aba058a-5269-4864-bcc8-fb44df829c37" width="100%" controls />
+</div>
 
 ## Features
 
