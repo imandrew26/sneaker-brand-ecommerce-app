@@ -20,6 +20,8 @@ class _CartItemState extends State<CartItem> {
   }
   @override
   Widget build(BuildContext context) {
+    final discount = Provider.of<Cart>(context).getDiscount();
+
     return Container(
       decoration: BoxDecoration(
         color: Colors.grey[100],
@@ -39,7 +41,29 @@ class _CartItemState extends State<CartItem> {
 
         //item image path
         title: Text(widget.item.name),
-        subtitle: Text('\$${widget.item.price}'),
+        subtitle: (discount > 0)
+                    ? RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: '\$${double.parse(widget.item.price).toStringAsFixed(2)}',
+                              style: TextStyle(
+                                color: Colors.grey.shade700,
+                                decoration: TextDecoration.lineThrough,
+                              ),
+                            ),
+                            TextSpan(
+                              text: ' \$${(double.parse(widget.item.price) * (1 - discount)).toStringAsFixed(2)}', // Discounted price
+                              style: TextStyle(
+                                color: Colors.red.shade900, // Discounted price in red
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    : Text(
+                        '\$${double.parse(widget.item.price).toStringAsFixed(2)}', // Normal price without discount
+                      ),
         trailing: IconButton(onPressed: removeCartItemCart, icon: const Icon(Icons.delete)),
       ),
     ); // ListTile

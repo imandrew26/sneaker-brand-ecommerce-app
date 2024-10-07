@@ -7,9 +7,56 @@ import '../models/cart.dart';
 import '../models/item.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:flutter/foundation.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-class CartPage extends StatelessWidget {
+class CartPage extends StatefulWidget {
   const CartPage({super.key});
+
+  @override
+  State<CartPage> createState() => CartPageState();
+}
+
+class CartPageState extends State<CartPage> {
+
+  final TextEditingController _promoCodeController = TextEditingController();
+
+  // Validate Promo Code via Express Backend
+  Future<void> validatePromoCode(BuildContext context) async {
+    final promoCode = _promoCodeController.text.trim();
+    final String apiUrl = dotenv.env['SERVER_IP'] ?? 'http://localhost:5050';
+
+    try {
+      final response = await http.post(
+        Uri.parse('$apiUrl/api/validate-promo'),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({'promoCode': promoCode}),
+      );
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        double discountPercent = data['discount'];
+        Provider.of<Cart>(context, listen: false).setDiscount(discountPercent);
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text("Promo Code Applied: ${(data['discount'] * 100).toInt()}% Off!"),
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5.0),
+          ),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("Invalid Promo Code"),
+            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5.0),
+          ),
+        );
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
   
   //handles successful payment
   void displayPaymentSheet(BuildContext context) async {
@@ -87,10 +134,53 @@ class CartPage extends StatelessWidget {
                 itemBuilder: (context, index) {
                 // get individual shoe
                   Item tempItem = value.getCartList()[index];
+                  
 
                 // return the cart item
                 return CartItem(item: tempItem);
               }),
+            ),
+
+            const SizedBox(height: 10),
+
+            // Promo code field + apply
+            Container(
+              padding: const EdgeInsets.all(8),
+              margin: const EdgeInsets.symmetric(horizontal: 0),
+              decoration: BoxDecoration(
+                color: Colors.grey[100],
+                borderRadius: BorderRadius.circular(8),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.05),
+                    spreadRadius: .5,
+                    blurRadius: 2,
+                    offset: const Offset(0, 1),
+                  ),
+                ],
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: _promoCodeController,
+                      decoration: const InputDecoration(
+                        hintText: "Enter Promo Code",
+                        border: InputBorder.none,
+                      ),
+                      style: const TextStyle(color: Colors.black),
+                      cursorColor: Colors.black
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () => validatePromoCode(context),
+                    style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.white, backgroundColor: Colors.grey.shade800,
+                      ),
+                    child: const Text("Apply"),
+                  ),
+                ],
+              ),
             ),
 
             //checkout button

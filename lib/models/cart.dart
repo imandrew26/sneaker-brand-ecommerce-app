@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:new_ecommerce_app/models/item.dart';
-import 'item.dart';
 
 class Cart extends ChangeNotifier{
 
@@ -48,7 +47,7 @@ class Cart extends ChangeNotifier{
       newarrival: false,
     ),
     Item(
-      name: 'Luke 3 "Blurred Vision"',
+      name: 'Luka 3 "Blurred Vision"',
       price: "130",
       imagePath: 'lib/images/luka-3-bv.png',
       description: 'Armed with plenty of court-ready tech, colors blend together and Luka scores.',
@@ -75,6 +74,18 @@ class Cart extends ChangeNotifier{
 
   //list for what user adds to cart
   List<Item> userCart = [];
+  double discount = 0.0;
+
+  //set dicount 
+  void setDiscount(double discountPercent) {
+    discount = discountPercent;
+    notifyListeners();
+  }
+
+  double getDiscount() {
+    return discount;
+  }
+
 
   //get list of items for sale
   List<Item> getItemList(){
@@ -105,12 +116,12 @@ class Cart extends ChangeNotifier{
 
   //return total price as string (in cents)
   String getTotalPrice(){
-    int sum = 0;
+    double sum = 0;
     for (Item item in userCart) {
-      sum += int.parse(item.price); // Convert string to int
+      sum += double.parse(item.price); // Convert string to int
     }
-    sum *= 100;
-    return sum.toString();
+    sum *= 100 * (1-discount);
+    return sum.toInt().toString();
   }
 
 }

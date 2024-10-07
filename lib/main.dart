@@ -19,9 +19,14 @@ class MyApp extends StatelessWidget{
   Widget build(BuildContext context){
     return ChangeNotifierProvider(
       create: (conext) => Cart(),
-      builder: (context, child) => const MaterialApp(
+      builder: (context, child) => MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: IntroPage(),
+          theme: ThemeData(
+            textSelectionTheme: TextSelectionThemeData(
+              selectionHandleColor: Colors.grey.shade600, // Handle color (the drop)
+            ),
+          ),
+        home: const IntroPage(),
       )
 
     );
