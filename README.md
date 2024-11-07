@@ -1,7 +1,7 @@
 
 # Nike Storefront App
 
-E-commerce application built primarily using Flutter designed to mimic the theme of the Nike app. It features a fully functional cart and checkout system, state management using provider, and Stripe integration via Express.js for payment processing.
+E-commerce application built primarily using Flutter designed to mimic the theme of the Nike app. It features a fully functional cart and checkout system, state management using Provider, and Stripe integration via Express.js for payment processing.
 
 ## Demo
 
